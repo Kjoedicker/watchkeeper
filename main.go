@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net"
+	"os"
 	"sync"
 	"time"
 )
@@ -41,9 +42,16 @@ func displayPorts(status string, ports []string) {
 	}
 }
 
+func parseCommandLineArguments() (host string) {
+	if len(os.Args) == 1 {
+		fmt.Println("A host must be provided")
+		os.Exit(1)
+	}
+	return os.Args[1]
+}
+
 func main() {
-	// TODO: pull this from a command line argument
-	host := ""
+	host := parseCommandLineArguments()
 
 	var openPorts []string
 	var closedPorts []string
