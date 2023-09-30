@@ -77,9 +77,10 @@ WatchLoop:
 		}
 		wg.Wait()
 
-		fmt.Println(host + " Ports:")
+		fmt.Printf("%s - %s: \n", time.Now().Format(time.Stamp), host)
 		displayPorts("open", openPorts)
 		displayPorts("closed", closedPorts)
+		fmt.Println()
 
 		if interval == 0 {
 			break WatchLoop
